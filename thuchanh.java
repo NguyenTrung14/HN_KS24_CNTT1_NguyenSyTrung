@@ -34,10 +34,10 @@ public class thuchanh {
     public static void showList() {
         System.out.println("Danh sach MSSV: ");
         if (size == 0) {
-            System.out.println("Danh sách rỗng!");
+            System.out.println("Danh sách rong!");
             return;
         }
-        System.out.print("[");
+        System.out.print("[ ");
         for (int i = 0; i < size; i++) {
             System.out.print(studentIds[i]);
             if (i < size - 1) {
@@ -64,9 +64,10 @@ public class thuchanh {
             return;
         }
         showList();
-        System.out.print("Vui long nhap vi tri ban muon cap nhat: ");
+        System.out.print("\nVui long nhap vi tri ban muon cap nhat: ");
         int index = sc.nextInt();
-        if (index < 0 || index > size) {
+        sc.nextLine();
+        if (index < 0 || index >= size) {
             System.out.println("Vi tri ban muon cap nhat khong hop le!");
             return;
         }
@@ -133,7 +134,7 @@ public class thuchanh {
             printMenu();
             System.out.print("Vui long chon chuc nang: ");
             choice = sc.nextInt();
-
+            sc.nextLine();
             switch (choice) {
                 case 1:
                     showList();
