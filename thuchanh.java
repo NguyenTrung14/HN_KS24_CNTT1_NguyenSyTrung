@@ -75,14 +75,23 @@ public class thuchanh {
         System.out.println("Cap nhat thanh cong!");
     }
 
-    public static void deleteById(){
-        if(size == 0){
+    public static int findExact(String id) {
+        for (int i = 0; i < size; i++) {
+            if (studentIds[i].equals(id)) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
+    public static void deleteById() {
+        if (size == 0) {
             System.out.print("Danh sach trong khong the thuc hien xoa!");
             return;
         }
         System.out.print("Nhap MSSV can xoa: ");
         String id = sc.nextLine().trim();
-        int pos = findExacl(id);
+        int pos = findExact(id);
         if (pos == -1) {
             System.out.println("Khong tim thay MSSV: " + id);
             return;
@@ -93,7 +102,28 @@ public class thuchanh {
         studentIds[size - 1] = null;
         size--;
 
-        System.out.println("Xóa thành công MSSV: " + id);
+        System.out.println("Xoa thanh cong MSSV: " + id);
+    }
+
+    public static void searchContainsIgnoreCase() {
+        if (size == 0) {
+            System.out.println("Danh sach rong! Khong co gi de tim.");
+            return;
+        }
+        System.out.print("Nhap chuoi can tim: ");
+        String keyword = sc.nextLine().trim().toLowerCase();
+        System.out.println("\n--- KET QUA TIM KIEM ---");
+        boolean found = false;
+        for (int i = 0; i < size; i++) {
+            String current = studentIds[i];
+            if (current != null && current.toLowerCase().contains(keyword)) {
+                System.out.println("Index " + i + " -> " + current);
+                found = true;
+            }
+        }
+        if (!found) {
+            System.out.println("Khong co MSSV nao chua: " + keyword);
+        }
     }
 
     public static void main(String[] args) {
